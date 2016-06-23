@@ -55,6 +55,7 @@ public class MouseBot {
      * @param message
      */
     private void sendToChannel(String message) {
+        log.info(message);
         if (channel != null){
             try {
                 channel.sendMessage(message);
@@ -62,7 +63,7 @@ public class MouseBot {
                 log.warning("sendToChannel() error: " + e.getMessage());
             }
         } else {
-            log.info(message);
+            log.warning("channel null");
         }
 
     }
@@ -75,18 +76,26 @@ public class MouseBot {
      */
     @EventSubscriber
     public void watchForCommands (MessageReceivedEvent event) {
+        log.info("message received");
         IMessage message = event.getMessage();
         String content = message.getContent();
 
-        if (!content.startsWith(KEY))
+        log.info("content: " + content);
+        if (!content.startsWith(KEY)) {
+            log.info("not a command");
             return;
+        }
+
+        log.info("command!");
+
 
         dispatchCommandEvent(message, content);
     }
 
     private void dispatchCommandEvent(IMessage message, String content) {
+        log.info("dispatchCommandEvent");
         //parse arguments from command
-        String command = content.toLowerCase();
+        String command = content.substring(KEY.length()).toLowerCase(); //remove key from command
         String[] args = null;
 
         if(content.contains(" ")) {
@@ -100,6 +109,7 @@ public class MouseBot {
 
     @EventSubscriber
     public void ping(CommandEvent event) {
+        log.info("ping command");
         if (event.isCommand("ping"))
             sendToChannel("pong");
     }
