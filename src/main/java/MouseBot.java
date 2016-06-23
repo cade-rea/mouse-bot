@@ -24,7 +24,9 @@ public class MouseBot {
     private IChannel channel;
 
     public static void main (String[] args) {
+        log.info("starting main");
         mouseBot = new MouseBot();
+        log.info("mouse-bot created");
     }
 
     public MouseBot() {
