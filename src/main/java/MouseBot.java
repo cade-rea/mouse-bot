@@ -16,7 +16,7 @@ import sx.blah.discord.util.MissingPermissionsException;
 @Log
 public class MouseBot {
 
-    private static String BOT_TOKEN = "MTk0ODUyNDQxMTMxMzE5Mjk3.CkusdA.kawvMg6ptxG92c4Fnvq4651vWgA";
+    private static String BOT_TOKEN = "";
     private final static String KEY = "~";
     public static MouseBot mouseBot;
 
